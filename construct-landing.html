@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Архитектурное бюро — строительство и дизайн премиум-класса</title>
+<meta name="description" content="Строительство загородных домов, дизайн интерьера и капитальный ремонт под ключ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ========== ТОКЕНЫ ========== */
+:root{
+  --white:#fafaf8; --paper:#f1f0ec; --ink:#232426; --graphite:#2e3033;
+  --muted:#76777a; --line:#e5e5e5; --gold:#D4AF37; --gold-deep:#b8962b;
+  --head:'Jost',sans-serif; --body:'Inter',sans-serif;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{font-family:var(--body);font-weight:300;color:var(--ink);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%;height:100%;object-fit:cover}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.wrap{padding:0 var(--pad);max-width:1480px;margin:0 auto}
+section{padding:clamp(72px,10vw,140px) 0}
+h1,h2,h3{font-family:var(--head);font-weight:300;line-height:1.08;letter-spacing:-.01em}
+h2{font-size:clamp(2rem,4.6vw,3.8rem);max-width:16ch}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:32px;margin-bottom:48px}
+.sec-head p{max-width:42ch;color:var(--muted)}
+
+/* ========== КНОПКИ: строгие, инверсия при hover ========== */
+.btn{display:inline-block;font:400 .85rem var(--head);letter-spacing:.14em;text-transform:uppercase;padding:16px 32px;border:1px solid var(--gold);background:var(--gold);color:var(--ink);cursor:pointer;transition:background .35s,color .35s,border-color .35s}
+.btn:hover{background:transparent;color:var(--gold)}
+.btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.7)}
+.btn.ghost:hover{background:#fff;color:var(--ink)}
+.btn.sm{padding:11px 22px;font-size:.75rem}
+.btn.dark{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn.dark:hover{background:transparent;color:var(--ink)}
+
+/* ========== HEADER ========== */
+header{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent;color:#fff}
+header.solid{background:rgba(250,250,248,.96);backdrop-filter:blur(8px);border-color:var(--line);color:var(--ink)}
+.bar{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font:400 1.25rem var(--head);letter-spacing:.28em;text-transform:uppercase}
+.logo i{color:var(--gold);font-style:normal}
+nav ul{display:flex;gap:40px;list-style:none}
+nav a{font-size:.85rem;letter-spacing:.06em;position:relative;padding:6px 0}
+nav a::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:0;background:var(--gold);transition:width .35s}
+nav a:hover::after{width:100%}
+.burger{display:none;background:none;border:0;color:inherit;font-size:1.4rem;cursor:pointer;width:44px;height:44px}
+.head-cta{display:block}
+header.solid .btn.ghost{color:var(--ink);border-color:var(--ink)}
+header.solid .btn.ghost:hover{background:var(--ink);color:#fff}
+
+/* ========== HERO ========== */
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;padding:0 0 clamp(48px,8vw,96px);color:#fff;background:var(--graphite);overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{animation:drift 22s ease-out forwards}
+.hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(35,36,38,.45) 0%,rgba(35,36,38,.15) 40%,rgba(35,36,38,.8) 100%)}
+@keyframes drift{from{transform:scale(1.12)}to{transform:scale(1)}}
+.hero .wrap{position:relative;width:100%}
+.hero h1{font-size:clamp(2.8rem,9vw,8.5rem);max-width:11ch;letter-spacing:-.025em;animation:rise 1.1s .15s both cubic-bezier(.2,.7,.2,1)}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-top:36px;padding-top:28px;border-top:1px solid rgba(255,255,255,.35);animation:rise 1.1s .45s both cubic-bezier(.2,.7,.2,1)}
+.hero-row p{max-width:46ch;font-size:1.05rem;color:rgba(255,255,255,.88)}
+@keyframes rise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+
+/* ========== УТП ========== */
+.usp{padding:0;border-bottom:1px solid var(--line)}
+.usp-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+.usp-item{padding:40px 28px 40px 0;border-right:1px solid var(--line)}
+.usp-item+.usp-item{padding-left:28px}
+.usp-item:last-child{border-right:0}
+.usp-item i{color:var(--gold);font-size:1.3rem;margin-bottom:18px}
+.usp-item h3{font-size:1.25rem;margin-bottom:8px}
+.usp-item p{font-size:.92rem;color:var(--muted)}
+
+/* ========== ПРОЕКТЫ: асимметричная сетка ========== */
+.services{display:grid;grid-template-columns:repeat(12,1fr);gap:24px}
+.card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);grid-column:span 4}
+.card:nth-child(1){grid-column:span 7}
+.card:nth-child(2){grid-column:span 5}
+.card .ph{overflow:hidden;aspect-ratio:16/10}
+.card:nth-child(n+3) .ph{aspect-ratio:4/3}
+.card img,.work img{transition:transform .6s ease}
+.card:hover img,.work:hover img{transform:scale(1.05)}
+.card-body{padding:28px;display:flex;flex-direction:column;gap:12px;flex:1}
+.card h3{font-size:1.6rem}
+.card p{color:var(--muted);font-size:.95rem;flex:1}
+.price{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:18px;margin-top:6px;gap:12px}
+.price b{font:400 1.35rem var(--head)}
+.price b small{font-size:.8rem;color:var(--muted);font-weight:300}
+
+/* ========== ЭТАПЫ ========== */
+.process{background:var(--graphite);color:#fff}
+.process .sec-head{border-color:rgba(255,255,255,.18)}
+.process .sec-head p{color:rgba(255,255,255,.65)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);position:relative;margin-bottom:56px}
+.steps::before{content:"";position:absolute;left:0;right:0;top:19px;height:1px;background:rgba(255,255,255,.2)}
+.step{background:none;border:0;color:rgba(255,255,255,.55);text-align:left;cursor:pointer;font:inherit;padding:0 16px 0 0;position:relative;transition:color .3s}
+.step .dot{display:block;width:39px;height:39px;border:1px solid rgba(255,255,255,.35);background:var(--graphite);border-radius:50%;margin-bottom:20px;position:relative;z-index:1;font:400 .9rem/37px var(--head);text-align:center;transition:.35s}
+.step strong{font:300 1.35rem var(--head)}
+.step.active,.step:hover{color:#fff}
+.step.active .dot{background:var(--gold);border-color:var(--gold);color:var(--ink)}
+.step-detail{display:grid;grid-template-columns:1fr 1.4fr;gap:48px;border-top:1px solid rgba(255,255,255,.18);padding-top:40px;transition:opacity .3s}
+.step-detail.fade{opacity:0}
+.step-detail h3{font-size:clamp(1.8rem,3.4vw,2.8rem)}
+.step-detail .term{color:var(--gold);margin-top:12px;font-size:.95rem}
+.step-detail p{font-size:1.1rem;color:rgba(255,255,255,.82);max-width:56ch}
+
+/* ========== ПОРТФОЛИО ========== */
+.works{display:grid;grid-template-columns:repeat(2,1fr);gap:48px 24px}
+.work:nth-child(even){margin-top:80px}
+.work .ph{overflow:hidden;aspect-ratio:4/3}
+.work-meta{display:flex;justify-content:space-between;gap:16px;padding-top:18px;border-bottom:1px solid var(--line);padding-bottom:18px}
+.work-meta h3{font-size:1.5rem}
+.work-meta span{color:var(--muted);font-size:.9rem;text-align:right}
+
+/* ========== КОНТАКТЫ ========== */
+.contacts{background:var(--paper)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(40px,8vw,120px)}
+.contact-list{list-style:none;margin-top:40px}
+.contact-list li{display:flex;gap:18px;padding:18px 0;border-bottom:1px solid #d8d7d2}
+.contact-list i{color:var(--gold-deep);width:20px;margin-top:5px}
+.contact-list small{display:block;color:var(--muted);font-size:.8rem}
+.socials{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap}
+.socials a{width:48px;height:48px;border:1px solid var(--ink);display:grid;place-items:center;transition:.3s}
+.socials a:hover{background:var(--ink);color:var(--gold)}
+form{display:flex;flex-direction:column;gap:30px;padding-top:8px}
+.field label{display:block;font-size:.8rem;color:var(--muted);margin-bottom:4px}
+.field input,.field textarea,.field select{width:100%;border:0;border-bottom:1px solid var(--ink);background:transparent;padding:10px 0;font:400 1rem var(--body);color:var(--ink);border-radius:0;transition:border-color .3s}
+.field input:focus,.field textarea:focus,.field select:focus{outline:0;border-color:var(--gold-deep)}
+.field textarea{resize:vertical;min-height:80px}
+.form-note{font-size:.9rem;color:var(--gold-deep);min-height:1.4em}
+footer{background:var(--ink);color:rgba(255,255,255,.6);padding:28px 0;font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* ========== ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ (один приём, только для крупных блоков) ========== */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .9s ease,transform .9s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media(max-width:960px){
+  .burger{display:block}
+  .head-cta{display:none}
+  nav{position:fixed;inset:76px 0 auto 0;background:var(--white);color:var(--ink);border-bottom:1px solid var(--line);max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s ease}
+  nav.open{max-height:420px;opacity:1}
+  nav ul{flex-direction:column;gap:0;padding:8px var(--pad) 24px}
+  nav li{border-bottom:1px solid var(--line)}
+  nav a{display:block;padding:18px 0;font-size:1.05rem}
+  header.menu-open{background:var(--white);color:var(--ink);border-color:var(--line)}
+  .usp-grid{grid-template-columns:1fr 1fr}
+  .usp-item,.usp-item+.usp-item{padding:28px 16px 28px 0;border-right:0;border-bottom:1px solid var(--line)}
+  .card,.card:nth-child(1),.card:nth-child(2){grid-column:span 12}
+  .card:nth-child(n+3){grid-column:span 6}
+  .contact-grid,.step-detail{grid-template-columns:1fr;gap:32px}
+}
+@media(max-width:640px){
+  .usp-grid{grid-template-columns:1fr}
+  .card:nth-child(n+3){grid-column:span 12}
+  .works{grid-template-columns:1fr;gap:40px}
+  .work:nth-child(even){margin-top:0}
+  .steps{grid-template-columns:1fr;gap:4px;margin-bottom:32px}
+  .steps::before{left:19px;right:auto;top:0;bottom:0;width:1px;height:auto}
+  .step{display:flex;gap:18px;align-items:center;padding:10px 0}
+  .step .dot{margin:0;flex:none}
+  .hero-row .btn{width:100%;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01s!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap bar">
+    <a href="#top" class="logo" id="logo" aria-label="На главную"></a>
+    <nav id="nav" aria-label="Основная навигация"><ul id="navList"></ul></nav>
+    <a href="#contacts" class="btn ghost sm head-cta" id="headCta"></a>
+    <button class="burger" id="burger" aria-label="Открыть меню" aria-expanded="false"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"><img id="heroImg" alt=""></div>
+    <div class="wrap">
+      <h1 id="heroTitle"></h1>
+      <div class="hero-row">
+        <p id="heroSub"></p>
+        <a href="#projects" class="btn" id="heroCta"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- УТП -->
+  <section class="usp"><div class="wrap usp-grid" id="uspGrid"></div></section>
+
+  <!-- ПРОЕКТЫ И УСЛУГИ -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 id="projTitle"></h2><p id="projLead"></p></div>
+      <div class="services" id="services"></div>
+    </div>
+  </section>
+
+  <!-- ЭТАПЫ -->
+  <section class="process" id="process">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 id="procTitle"></h2><p id="procLead"></p></div>
+      <div class="steps" id="steps" role="tablist"></div>
+      <div class="step-detail" id="stepDetail" aria-live="polite">
+        <div><h3 id="sdTitle"></h3><div class="term" id="sdTerm"></div></div>
+        <p id="sdText"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПОРТФОЛИО -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="sec-head reveal"><h2 id="portTitle"></h2><p id="portLead"></p></div>
+      <div class="works" id="works"></div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section class="contacts" id="contacts">
+    <div class="wrap contact-grid">
+      <div class="reveal">
+        <h2 id="contTitle"></h2>
+        <ul class="contact-list" id="contactList"></ul>
+        <div class="socials" id="socials"></div>
+      </div>
+      <form id="leadForm" class="reveal" novalidate>
+        <div class="field"><label for="fName">Ваше имя</label><input id="fName" name="name" required autocomplete="name"></div>
+        <div class="field"><label for="fPhone">Телефон</label><input id="fPhone" name="phone" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="fType">Что вас интересует</label><select id="fType" name="service"></select></div>
+        <div class="field"><label for="fMsg">Расскажите о задаче</label><textarea id="fMsg" name="message"></textarea></div>
+        <button class="btn dark" type="submit" id="formBtn"></button>
+        <div class="form-note" id="formNote" role="status"></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer><div class="wrap"><span id="footL"></span><span id="footR"></span></div></footer>
+
+<script>
+/* =====================================================================
+   КОНФИГУРАЦИЯ — ВСЕ ИЗМЕНЯЕМЫЕ ДАННЫЕ ЗДЕСЬ.
+   Для автоматизации достаточно подменить значения в этом объекте:
+   HTML и CSS менять не нужно.
+   ===================================================================== */
+const CONSTRUCT_DATA = {
+  company: { name: "ATELIER", accent: "HOME", year: 2026, legal: "ООО «Ателье Хоум»" },
+
+  contacts: {
+    phone: "+7 (495) 000-00-00",
+    email: "hello@atelier-home.ru",
+    address: "Москва, Пречистенская наб., 10",
+    hours: "Пн–Пт 9:00–19:00, Сб 10:00–16:00",
+    messengers: [
+      { name: "Telegram", icon: "fa-brands fa-telegram", url: "https://t.me/example" },
+      { name: "WhatsApp", icon: "fa-brands fa-whatsapp", url: "https://wa.me/70000000000" },
+      { name: "VK",       icon: "fa-brands fa-vk",       url: "https://vk.com/example" }
+    ]
+  },
+
+  nav: [
+    { label: "Проекты",  href: "#projects" },
+    { label: "Цены",     href: "#projects" },
+    { label: "Этапы",    href: "#process" },
+    { label: "Контакты", href: "#contacts" }
+  ],
+  headerCta: "Обсудить проект",
+
+  hero: {
+    title: "Строим архитектуру будущего",
+    subtitle: "Загородные дома и интерьеры премиум-класса: от первого эскиза до передачи ключей — одной командой и по фиксированной смете.",
+    cta: "Смотреть каталог проектов",
+    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2200&q=80"
+  },
+
+  usp: [
+    { icon: "fa-solid fa-ruler-combined", title: "Один подрядчик", text: "Архитектура, инженерия, стройка и дизайн — без передачи ответственности." },
+    { icon: "fa-solid fa-file-contract",  title: "Фиксированная смета", text: "Цена закреплена в договоре и не растёт по ходу работ." },
+    { icon: "fa-solid fa-shield-halved",  title: "Гарантия 10 лет", text: "На конструктив и инженерные системы, с выездным сервисом." },
+    { icon: "fa-solid fa-camera",         title: "Контроль онлайн", text: "Камеры на объекте и еженедельный фотоотчёт в мессенджер." }
+  ],
+
+  projects: {
+    title: "Проекты и услуги",
+    lead: "Три направления, одна команда. Цены указаны для базовой комплектации, точную стоимость фиксируем после замера.",
+    items: [
+      { title: "Строительство коттеджей", text: "Дома из газобетона, кирпича и клеёного бруса с авторской архитектурой, инженерией и ландшафтом.", priceFrom: "от 85 000 ₽/м²", image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1400&q=80" },
+      { title: "Дизайн интерьера",        text: "Планировка, 3D-визуализации, комплектация и авторский надзор.", priceFrom: "от 4 500 ₽/м²", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=80" },
+      { title: "Капитальный ремонт",      text: "Ремонт квартир под ключ с заменой коммуникаций и чистовой отделкой.", priceFrom: "от 38 000 ₽/м²", image: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" },
+      { title: "Архитектурный проект",    text: "Эскиз, концепция и полный комплект рабочей документации.", priceFrom: "от 2 800 ₽/м²", image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" },
+      { title: "Ландшафт и благоустройство", text: "Участок, освещение, террасы и малые формы вокруг дома.", priceFrom: "от 9 000 ₽/м²", image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" }
+    ],
+    cardCta: "Рассчитать"
+  },
+
+  process: {
+    title: "Как мы работаем",
+    lead: "Четыре этапа, на каждом — договор, отчёт и понятный результат.",
+    steps: [
+      { name: "Проектирование", term: "3–6 недель", text: "Изучаем участок и образ жизни семьи, готовим концепцию, планировки и 3D-модель. Правки вносим до полного согласования." },
+      { name: "Смета",          term: "1–2 недели", text: "Считаем материалы и работы по каждой позиции. Итоговая сумма и график платежей фиксируются в договоре." },
+      { name: "Строительство",  term: "от 6 месяцев", text: "Ведём объект с прорабом и техническим надзором. Еженедельный фотоотчёт, доступ к камерам, приёмка каждого этапа." },
+      { name: "Сдача",          term: "1 неделя", text: "Финальная приёмка с вами, уборка, передача документации и ключей. Гарантийный сервис начинается в день сдачи." }
+    ]
+  },
+
+  portfolio: {
+    title: "Выполненные объекты",
+    lead: "Дома и интерьеры, которые мы сдали за последние годы.",
+    items: [
+      { title: "Дом «Серебряный бор»", area: "420 м²", location: "Московская обл., Истра", image: "https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1400&q=80" },
+      { title: "Резиденция «Лес»",     area: "310 м²", location: "Рублёвское шоссе",       image: "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c0?auto=format&fit=crop&w=1400&q=80" },
+      { title: "Квартира на Патриарших", area: "145 м²", location: "Москва, Патриаршие пруды", image: "https://images.unsplash.com/photo-1600607687644-c7171b42498f?auto=format&fit=crop&w=1400&q=80" },
+      { title: "Дом у воды",           area: "380 м²", location: "Тверская обл., Селигер", image: "https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1400&q=80" }
+    ]
+  },
+
+  contactBlock: {
+    title: "Обсудим ваш проект",
+    formService: ["Строительство дома", "Дизайн интерьера", "Капитальный ремонт", "Другое"],
+    formButton: "Отправить заявку",
+    formSuccess: "Спасибо! Мы свяжемся с вами в течение рабочего дня.",
+    formError: "Укажите имя и телефон.",
+    /* Если задан URL — заявка уйдёт POST-запросом (JSON). Если пусто — демо-режим. */
+    formEndpoint: ""
+  }
+};
+
+/* =====================================================================
+   РЕНДЕР: наполнение страницы данными из CONSTRUCT_DATA
+   ===================================================================== */
+(function () {
+  const D = CONSTRUCT_DATA;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+  const digits = (s) => s.replace(/[^\d+]/g, "");
+
+  document.title = D.company.name + " " + D.company.accent + " — " + D.hero.title;
+
+  // Логотип, навигация, кнопка в шапке
+  $("logo").innerHTML = esc(D.company.name) + " <i>" + esc(D.company.accent) + "</i>";
+  $("navList").innerHTML = D.nav.map((n) => '<li><a href="' + esc(n.href) + '">' + esc(n.label) + "</a></li>").join("");
+  $("headCta").textContent = D.headerCta;
+
+  // Hero
+  $("heroImg").src = D.hero.image;
+  $("heroTitle").textContent = D.hero.title;
+  $("heroSub").textContent = D.hero.subtitle;
+  $("heroCta").textContent = D.hero.cta;
+
+  // УТП
+  $("uspGrid").innerHTML = D.usp.map((u) =>
+    '<div class="usp-item"><i class="' + esc(u.icon) + '"></i><h3>' + esc(u.title) + "</h3><p>" + esc(u.text) + "</p></div>").join("");
+
+  // Проекты и услуги
+  $("projTitle").textContent = D.projects.title;
+  $("projLead").textContent = D.projects.lead;
+  $("services").innerHTML = D.projects.items.map((p) =>
+    '<article class="card reveal"><div class="ph"><img loading="lazy" src="' + esc(p.image) + '" alt="' + esc(p.title) + '"></div>' +
+    '<div class="card-body"><h3>' + esc(p.title) + "</h3><p>" + esc(p.text) + "</p>" +
+    '<div class="price"><b>' + esc(p.priceFrom) + '</b><a class="btn sm dark" href="#contacts" data-service="' + esc(p.title) + '">' + esc(D.projects.cardCta) + "</a></div></div></article>").join("");
+
+  // Этапы: интерактивные вкладки
+  $("procTitle").textContent = D.process.title;
+  $("procLead").textContent = D.process.lead;
+  const steps = D.process.steps;
+  $("steps").innerHTML = steps.map((s, i) =>
+    '<button class="step" role="tab" data-i="' + i + '"><span class="dot">' + (i + 1) + "</span><strong>" + esc(s.name) + "</strong></button>").join("");
+  const detail = $("stepDetail");
+  function showStep(i) {
+    document.querySelectorAll(".step").forEach((b, k) => {
+      b.classList.toggle("active", k === i);
+      b.setAttribute("aria-selected", k === i);
+    });
+    detail.classList.add("fade");
+    setTimeout(() => {
+      $("sdTitle").textContent = steps[i].name;
+      $("sdTerm").textContent = "Срок: " + steps[i].term;
+      $("sdText").textContent = steps[i].text;
+      detail.classList.remove("fade");
+    }, 220);
+  }
+  $("steps").addEventListener("click", (e) => {
+    const b = e.target.closest(".step");
+    if (b) showStep(+b.dataset.i);
+  });
+  showStep(0);
+
+  // Портфолио
+  $("portTitle").textContent = D.portfolio.title;
+  $("portLead").textContent = D.portfolio.lead;
+  $("works").innerHTML = D.portfolio.items.map((w) =>
+    '<article class="work reveal"><div class="ph"><img loading="lazy" src="' + esc(w.image) + '" alt="' + esc(w.title) + '"></div>' +
+    '<div class="work-meta"><h3>' + esc(w.title) + "</h3><span>" + esc(w.area) + "<br>" + esc(w.location) + "</span></div></article>").join("");
+
+  // Контакты и мессенджеры
+  const C = D.contacts;
+  $("contTitle").textContent = D.contactBlock.title;
+  $("contactList").innerHTML =
+    '<li><i class="fa-solid fa-phone"></i><div><small>Телефон</small><a href="tel:' + esc(digits(C.phone)) + '">' + esc(C.phone) + "</a></div></li>" +
+    '<li><i class="fa-regular fa-envelope"></i><div><small>Почта</small><a href="mailto:' + esc(C.email) + '">' + esc(C.email) + "</a></div></li>" +
+    '<li><i class="fa-solid fa-location-dot"></i><div><small>Адрес</small>' + esc(C.address) + "</div></li>" +
+    '<li><i class="fa-regular fa-clock"></i><div><small>График работы</small>' + esc(C.hours) + "</div></li>";
+  $("socials").innerHTML = C.messengers.map((m) =>
+    '<a href="' + esc(m.url) + '" target="_blank" rel="noopener" aria-label="' + esc(m.name) + '"><i class="' + esc(m.icon) + '"></i></a>').join("");
+
+  // Форма
+  $("fType").innerHTML = D.contactBlock.formService.map((o) => "<option>" + esc(o) + "</option>").join("");
+  $("formBtn").textContent = D.contactBlock.formButton;
+  // Кнопка «Рассчитать» подставляет услугу в форму
+  $("services").addEventListener("click", (e) => {
+    const a = e.target.closest("[data-service]");
+    if (!a) return;
+    $("fMsg").value = "Интересует: " + a.dataset.service;
+  });
+  $("leadForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const note = $("formNote");
+    const f = e.target;
+    if (!f.name.value.trim() || !f.phone.value.trim()) { note.textContent = D.contactBlock.formError; return; }
+    const payload = Object.fromEntries(new FormData(f).entries());
+    try {
+      if (D.contactBlock.formEndpoint) {
+        await fetch(D.contactBlock.formEndpoint, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+      }
+      note.textContent = D.contactBlock.formSuccess;
+      f.reset();
+    } catch (err) {
+      note.textContent = "Не удалось отправить. Позвоните нам: " + C.phone;
+    }
+  });
+
+  // Футер
+  $("footL").textContent = "© " + D.company.year + " " + D.company.legal;
+  $("footR").textContent = C.phone + " · " + C.email;
+
+  /* =================================================================
+     ПОВЕДЕНИЕ: бургер-меню, шапка при скролле, плавное появление
+     ================================================================= */
+  const header = $("header"), nav = $("nav"), burger = $("burger");
+  function setMenu(open) {
+    nav.classList.toggle("open", open);
+    header.classList.toggle("menu-open", open);
+    burger.setAttribute("aria-expanded", open);
+    burger.innerHTML = '<i class="fa-solid ' + (open ? "fa-xmark" : "fa-bars") + '"></i>';
+  }
+  burger.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+  nav.addEventListener("click", (e) => { if (e.target.closest("a")) setMenu(false); });
+  window.addEventListener("resize", () => { if (innerWidth > 960) setMenu(false); });
+
+  const onScroll = () => header.classList.toggle("solid", scrollY > 60);
+  onScroll();
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Плавное появление блоков
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+})();
+</script>
+</body>
+</html>
